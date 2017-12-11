@@ -22,7 +22,9 @@ public:
 	Candidat reqDeputeElu() const;
 	std::string reqCirconscriptionFormate() const;
 	void inscrire(const Personne& p_nouvelInscrit) ;
+	void desinscrire(const Personne& p_nouvelInscrit) ;
 private:
+	bool personneEstDejaPresente(const std::string& p_nas) const;
 	void verifieInvariant() const;
 	std::string m_nom;
 	std::vector<Personne*> m_vInscrits;

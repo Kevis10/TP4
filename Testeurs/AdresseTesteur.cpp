@@ -8,6 +8,9 @@
 #include "Adresse.h"
 #include <gtest/gtest.h>
 
+
+using namespace util;
+using namespace elections;
 using namespace util;
 
 

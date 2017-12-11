@@ -9,6 +9,11 @@
 #include <sstream>
 #include <string>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+
 
 using namespace std;
 
@@ -49,11 +54,50 @@ std::string Circonscription::reqCirconscriptionFormate() const {
 }
 
 void Circonscription::inscrire(const Personne& p_nouvelInscrit) {
-	m_vInscrits.push_back(p_nouvelInscrit.clone());
+	if(personneEstDejaPresente(p_nouvelInscrit.reqNas()) == false){
+		m_vInscrits.push_back(p_nouvelInscrit.clone());
+	}
+	else{
+		//throw PersonneDejaPresentException(p_nouvelInscrit.reqPersonneFormate());
+	}
 }
 
 void Circonscription::verifieInvariant() const {
 	INVARIANT(!(m_nom.empty()));
 }
 
+void Circonscription::desinscrire(const Personne& p_nouvelInscrit) {
+	if(personneEstDejaPresente(p_nouvelInscrit.reqNas()) == false){
+		//throw personne est absente
+	}
+	else{
+		std::vector<Personne*>::iterator iter;
+		for(iter = m_vInscrits.begin() ;  iter != m_vInscrits.end() ; ++iter){
+			{
+				if((*iter)->reqNas()==p_nouvelInscrit.reqNas()){
+					delete *iter;
+					m_vInscrits.erase (iter) ;
+				}
+			}
+		}
+	}
+
+}
+
+bool Circonscription::personneEstDejaPresente(const std::string& p_nas) const {
+	bool validation = false;
+	std::vector<Personne*>::const_iterator iter;
+	for(iter = m_vInscrits.begin() ;  iter != m_vInscrits.end() ; ++iter){
+		if((*iter)->reqNas() == p_nas){
+			validation = true;
+			break;
+		}
+	}
+	return validation;
+}
+
+
+
 } /* namespace elections */
+
+
