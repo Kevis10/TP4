@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CirconscriptionGUIClass</class>
+ <widget class="QMainWindow" name="CirconscriptionGUIClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextBrowser" name="affichage">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>551</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <widget class="QMenu" name="menuAjouter_personne">
+     <property name="title">
+      <string>Ajouter personne</string>
+     </property>
+     <addaction name="actionCandidat"/>
+     <addaction name="actionElecteur_2"/>
+    </widget>
+    <addaction name="menuAjouter_personne"/>
+    <addaction name="actionDesinscrire_personne"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCandidat">
+   <property name="text">
+    <string>Candidat</string>
+   </property>
+  </action>
+  <action name="actionElecteur">
+   <property name="text">
+    <string>Electeur</string>
+   </property>
+  </action>
+  <action name="actionSupprimer_personne">
+   <property name="text">
+    <string>Supprimer personne</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionElecteur_2">
+   <property name="text">
+    <string>Electeur</string>
+   </property>
+  </action>
+  <action name="actionDesinscrire_personne">
+   <property name="text">
+    <string>Desinscrire une personne</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuitter</sender>
+   <signal>triggered()</signal>
+   <receiver>CirconscriptionGUIClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

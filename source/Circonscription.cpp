@@ -22,13 +22,20 @@ namespace elections {
 
 
 Circonscription::~Circonscription() {
-	m_vInscrits.clear();
+	std::vector<Personne*>::iterator iter;
+	for(iter = m_vInscrits.begin() ;  iter != m_vInscrits.end() ; ++iter)
+	{
+		delete *iter;
+		m_vInscrits.erase (iter) ;
+
+	}
 }
 
 Circonscription::Circonscription(const std::string& p_nom,
 		const Candidat& p_depute):m_nom(p_nom), m_deputeElu(p_depute){
 	PRECONDITION(!(p_nom.empty()));
 	POSTCONDITION(m_nom == p_nom);
+	POSTCONDITION(m_deputeElu == p_depute);
 	INVARIANTS();
 }
 
