@@ -13,7 +13,7 @@ class CandidatInterface : public QDialog
 public:
     CandidatInterface(QWidget *parent = 0);
     ~CandidatInterface();
-    void ajouterCandidat();
+
 
     QString reqNas() const;
     QString reqNom() const;

@@ -21,7 +21,6 @@ QString DesinscrirePersonne::reqNas() const {
 }
 
 
-
 void DesinscrirePersonne::valideSuppression(){
 	if (ui.lineEdit_nasd->text().isEmpty() ){
 		QString message("Veuillez saisir soit le nom ou le prenom ou les deux");

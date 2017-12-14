@@ -20,6 +20,11 @@ using namespace std;
 namespace elections {
 
 
+/**
+ * \brief destructeur
+ * permet de supprimer les personne du vecteur contenant les inscrits
+ */
+
 
 Circonscription::~Circonscription() {
 	std::vector<Personne*>::iterator iter;
@@ -31,6 +36,14 @@ Circonscription::~Circonscription() {
 	}
 }
 
+
+/**
+ * \brief Contructeur avec parametres
+ *		On construit un objet circonscription avec les valeurs passees en parametres
+ *\param[in] p_nom est un string qui represente le nom de la circonscription
+ *\param[in] p_depute est un object candidat qui represente le candidat elu sortant
+ */
+
 Circonscription::Circonscription(const std::string& p_nom,
 		const Candidat& p_depute):m_nom(p_nom), m_deputeElu(p_depute){
 	PRECONDITION(!(p_nom.empty()));
@@ -39,13 +52,28 @@ Circonscription::Circonscription(const std::string& p_nom,
 	INVARIANTS();
 }
 
+
+/**
+ *\brief retourne un string contenant le nom de la circonscription
+
+ */
+
 std::string Circonscription::reqNom() const {
 	return m_nom;
 }
 
+/**
+ *\brief retourne un object candidat contenant les informations sur un le candidat sortant
+ */
+
 Candidat Circonscription::reqDeputeElu() const {
 	return m_deputeElu;
 }
+
+/**
+ *\brief retourne les informations de la circonscription formatees dans une chaine de caracteres
+
+*/
 
 std::string Circonscription::reqCirconscriptionFormate() const {
 	ostringstream sortie;
@@ -60,6 +88,9 @@ std::string Circonscription::reqCirconscriptionFormate() const {
 	return sortie.str();
 }
 
+/** Permet d'inscrire une nouvelle personne dans le vecteur circonscription
+*/
+
 void Circonscription::inscrire(const Personne& p_nouvelInscrit) {
 	if(personneEstDejaPresente(p_nouvelInscrit.reqNas()) == false){
 		m_vInscrits.push_back(p_nouvelInscrit.clone());
@@ -73,6 +104,9 @@ void Circonscription::verifieInvariant() const {
 	INVARIANT(!(m_nom.empty()));
 }
 
+/**
+ *\brief permet de deisinscrire une personne de la circonscription
+*/
 void Circonscription::desinscrire(const Personne& p_nouvelInscrit) {
 	if(personneEstDejaPresente(p_nouvelInscrit.reqNas()) == false){
 		//throw personne est absente

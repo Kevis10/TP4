@@ -15,13 +15,15 @@ namespace util
 {
 /*
  * \brief constructeur
- * \param[in]
- * \param[in]
- * \param[in]
- * \param[in]
- * \param[in]
- * \pre ne doit pas être vide
+ * \param[in] p_nom rue est un string qui represente le nom de la rue
+ * \param[in] p_ville est un string qui represente le nom de la ville
+ * \param[in] p_code postal est un string qui represente le code postal de la personne
+ * \param[in] p_province est un string qui represente le nom de la province
+ * \param[in] p_numerorue rue est un int qui represente le numero de la rue
+ * \precondtion : aucun de ces parametres ne doit etre vide
+ * 				  le numero de la rue ne doit pas etre negatif
  */
+
 Adresse::Adresse(const std::string& p_nomrue,const std::string& p_ville,
 			const std::string& p_codepostal,
 			const std::string& p_province, int p_numerorue):m_nomrue(p_nomrue),
@@ -43,25 +45,61 @@ Adresse::Adresse(const std::string& p_nomrue,const std::string& p_ville,
 	INVARIANTS();
 }
 
+/**
+ *\brief retourne le nom de rue de la personne
+ *\return un string qui represente le nom de rue de la personne
+ */
 std::string Adresse::reqNomRue() const {
 	return m_nomrue;
 }
 
+
+/**
+ *\brief retourne le nom de la ville
+ *\return un string qui represente le nom de la ville
+ */
 std::string Adresse::reqVille() const {
 	return m_ville;
 }
+
+
+/**
+ *\brief retourne le code postal de la personne
+ *\return un string qui represente le code postal de la personne
+ */
 
 std::string Adresse::reqCodePostal() const {
 	return m_codepostal;
 }
 
+
+/**
+ *\brief retourne le nom de la province
+ *\return un string qui represente le nom de la province
+ */
+
 std::string Adresse::reqProvince() const {
 	return m_province;
 }
 
+
+/**
+ *\brief retourne le numero de rue de la personne
+ *\return un int qui represente le nom de la personne
+ */
 int Adresse::reqNumeroRue() const {
 	return m_numerorue;
 }
+
+
+/**
+ * \brief Assigne les differents attributs de l'adresse a l'objet adresse courant
+ * \param[in] p_nom rue est un string qui represente le nom de la rue
+ * \param[in] p_ville est un string qui represente le nom de la ville
+ * \param[in] p_code postal est un string qui represente le code postal de la personne
+ * \param[in] p_province est un string qui represente le nom de la province
+ * \param[in] p_numerorue est un int qui represente le numero de la rue
+ */
 
 void Adresse::asgAdresse(const std::string& p_nomrue,
 		const std::string& p_ville, const std::string& p_codepostal,
@@ -97,6 +135,9 @@ void Adresse::asgAdresse(const std::string& p_nomrue,
 
 
 
+/**
+ *\brief retourne les informations de l'adresse formatees dans une chaine de caracteres
+*/
 
 std::string Adresse::reqAdresseFormate() const {
 	ostringstream p_os;
@@ -110,10 +151,26 @@ std::string Adresse::reqAdresseFormate() const {
 
 }
 
+
+/**
+ * \brief surcharge de l'operateur ==
+ * \param[in] p_adresse un objet de type adresse valide
+ * \return un booleen qui indique si les deux adresse compares sont egales sur la base de tous leurs attributs
+ *
+ */
+
 bool Adresse::operator ==(const Adresse& p_adresse) const {
 	return(p_adresse.m_codepostal==m_codepostal and p_adresse.m_nomrue==m_nomrue and p_adresse.m_numerorue ==m_numerorue
 			and p_adresse.m_province==m_province and p_adresse.m_ville==m_ville);
 }
+
+
+/**
+ * \brief Surchage de la fonction << d'ecriture dans un ostream
+ * \param[in] p_os un ostream vide dans lequel on va ecrire
+ * \param[in] p_adrsse est une adresse valide
+ * \return un stream dans lequelle on ecrit l'adresse
+ */
 std::ostream& operator <<(std::ostream& p_os, const Adresse& p_adresse)
 {
 	p_os<<p_adresse.m_numerorue<<endl;

@@ -55,12 +55,11 @@ void CirconscriptionGUI::dialogDesinscrirePersonne(){ //suppression d'un personn
 
 	DesinscrirePersonne desinscriptionPersonne(this);
 	if(desinscriptionPersonne.exec()){
-		if (desinscriptionPersonne.reqNom().isEmpty())
-			desinscrirepersonne("",desinscriptionPersonne.reqPrenom().toStdString());
-		else if(desinscriptionPersonne.reqPrenom().isEmpty())
-			desinscrirepersonne(desinscriptionPersonne.reqNom().toStdString(),"");
+		if (desinscriptionPersonne.reqNas().isEmpty()){
+			desinscrirepersonne(desinscriptionPersonne.reqNas().toStdString());
+		}
 		else if
-			desinscrirepersonne(desinscriptionPersonne.reqNom().toStdString,desinscriptionPersonne.reqPrenom().toStdString());
+			(desinscrirepersonne(desinscriptionPersonne.reqNas().toStdString())){
 		afficherListePersonnes();
 
 	}
@@ -68,10 +67,38 @@ void CirconscriptionGUI::dialogDesinscrirePersonne(){ //suppression d'un personn
 
 }
 
+
+
+void CirconscriptionGUI::ajouterCandidat(const std::string& p_nas,
+			const std::string& p_prenom,
+			const std::string& p_nom,
+			const util::Date& p_dateNaissance,
+			const util::Adresse& p_adresse,
+			int p_parti){
+
+
+	Candidat personne_candidat(p_nas,p_nom,p_prenom,p_dateNaissance,p_adresse,p_parti);
+	if (!this -> m_circonscription.personneDejaPresente(personne_candidat.reqNas())){
+	m_vInscrits.push_back(new Candidat(personne_candidat));
+}
+}
+
+void CirconscriptionGUI::ajouterElecteur(const std::string& p_nas,
+			const std::string& p_prenom,
+			const std::string& p_nom,
+			const util::Date& p_dateNaissance,
+			const util::Adresse& p_adresse){
+
+
+	Electeur personne_electeur(p_nas,p_nom,p_prenom,p_dateNaissance,p_adresse);
+	//if (!this -> PersonneDejaPresent(personne_candidat.reqNas())){
+	m_vInscrits.push_back(new Electeur(personne_electeur)); }
+}
+
 void CirconscriptionGUI::dialogCandidat(){
 	CandidatInterface saisieCandidat(this);
 	if (saisieCandidat.exec()){
-		ajouterCandidat(saisieCandidat.reqNas().toStdString(),saisieCandidat.reqPrenom().toStdString(),saisieCandidat.reqNom().toStdString(),saisieCandidat.reqDateNaissance(),saisieCandidat.reqAdresse(),saisieCandidat.reqParti());
+		Circonscription::inscrire(saisieCandidat.reqNas().toStdString(),saisieCandidat.reqPrenom().toStdString(),saisieCandidat.reqNom().toStdString(),saisieCandidat.reqDateNaissance(),saisieCandidat.reqAdresse(),saisieCandidat.reqParti());
 		ui.affichage->setText(this->reqListeFormate().c_str()); // affiche la personne
 	}
 
@@ -85,33 +112,6 @@ void CirconscriptionGUI::dialogElecteur(){
 	}
 
 }
-
-
-void CirconscriptionGUI::ajouterCandidat(const std::string& p_nas,
-			const std::string& p_prenom,
-			const std::string& p_nom,
-			const util::Date& p_dateNaissance,
-			const util::Adresse& p_adresse,
-			int p_parti){
-
-
-	Candidat personne_candidat(p_nas,p_nom,p_prenom,p_dateNaissance,p_adresse,p_parti);
-	if (!this -> m_circonscription.personneDejaPresente(personne_candidat.reqNas())){
-	m_vInscrits.push_back(new Candidat(personne_candidat)); }
-}
-
-void CirconscriptionGUI::ajouterElecteur(const std::string& p_nas,
-			const std::string& p_prenom,
-			const std::string& p_nom,
-			const util::Date& p_dateNaissance,
-			const util::Adresse& p_adresse){
-
-
-	Electeur personne_electeur(p_nas,p_nom,p_prenom,p_dateNaissance,p_adresse);
-	if (!this -> PersonneDejaPresent(personne_candidat.reqNas())){
-	m_vInscrits.push_back(new Electeur(personne_electeur)); }
-}
-
 
 string CirconscriptionGUI::reqListeFormate() const { // a transformer en -- afficher liste personnes ( utiliser tableWidget peut etre)
 	                                                 // raison probable du bug de l'inscription d'un electeur

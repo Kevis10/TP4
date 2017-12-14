@@ -17,6 +17,18 @@ NOUVEAU_PARTI_DEMOCRATIQUE};
 namespace elections {
 
 
+/**
+ *\class candidat
+ *\brief Cette classe sert au maintien et a la manipulations des candidats
+ *				Attributs: m_nom   Nom de la personne\n
+ *				m_prenom prenom de la personne\n
+ *				m_nas   numero d'assurance social de la personne, peut etre valide
+ *				a l'aide de la fonction validerNAS du namespace util\n
+ *				m_dateNaissance objet Date du namespace util representant la date de naissance de la personne\n
+ *				m_adresse adresse de la residence de la personne,
+ *				m_partipolitique parti politique
+ */
+
 class Candidat : public Personne{
 public:
 	Candidat(const std::string& p_nas,

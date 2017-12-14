@@ -119,6 +119,8 @@ std::string Personne::reqPersonneFormate() const  {
 
 
 }
+
+
 /**
  * \brief surcharge de l'operateur ==
  * \param[in] p_personne un objet de type personne valide

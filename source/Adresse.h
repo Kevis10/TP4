@@ -21,7 +21,9 @@ namespace util
  * \brief Cette classe sert a la manipulation et au maintien des adresses civiques.
  * Cette classe peut aussi afficher l'adresse d'une personne sous une forme facilement lisble par l'utilisateur
  * 		<p>
- * 		Attributs: m_nom nom de la rue de l'adresse
+ * 		Attributs:  m_num nom de la rue de l'adresse
+ * 		m_nom nom de la rue de l'adresse
+ *
  */
 class Adresse
 {

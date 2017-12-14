@@ -14,6 +14,20 @@
 
 namespace elections {
 
+/**
+ *\class Personne
+ *\brief Cette classe sert au maintien et a la manipulations des circonscriptions
+ *	     elle permet d'inscrire et de desinscrire des personnes (candidats et electeurs)
+ *	   	 et de retourner de facon formatee et lisible la liste des personnes
+ *	   	 dans cette circonscription ainsi que le depute elu sortant
+ *
+ *				Attributs: m_nom   Nom de la circonscription\n
+ *						   m_deputeElu objet candidat representant la derniere personne elu
+ *						   m_vInscrits vecteur comportant les inscrits (candidats et electeurs) de la circonscription
+ */
+
+
+
 class Circonscription {
 public:
 	Circonscription(const std::string& p_nom, const Candidat& p_depute);

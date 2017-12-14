@@ -34,16 +34,6 @@ namespace elections {
  *				m_adresse adresse de la residence de la personne, seul attribut que l'on peut modifier avec les
  *				methodes de la classe\n
  *				<p>
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 class Personne {

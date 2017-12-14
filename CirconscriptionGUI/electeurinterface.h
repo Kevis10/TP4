@@ -13,7 +13,7 @@ class ElecteurInterface : public QDialog
 public:
     ElecteurInterface(QWidget *parent = 0);
     ~ElecteurInterface();
-    void ajouterElecteur();
+
 
     QString reqNas() const;
     QString reqNom() const;
